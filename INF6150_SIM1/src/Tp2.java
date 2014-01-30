@@ -11,7 +11,7 @@ public class Tp2 {
 	
 	
 	/**
-	 * saisirDegreDifficulte permet de saisir le niveau de difficulte
+	 * Permet de saisir le niveau de difficulte
 	 * voulu. Elle s assure que la valeur entree est dans l'intervalle
 	 * specifie
 	 * @return Un Entier qui represente le niveau de difficulte
@@ -35,7 +35,7 @@ public class Tp2 {
 	}
 
 	/**
-	 * nombreOperateur determine combien d operateurs on aura pour
+	 * Determine combien d operateurs on aura pour
 	 * l operation en cours
 	 * @return Un entier dont la valeur est 1 ou 2
 	 */
@@ -47,7 +47,7 @@ public class Tp2 {
 	}
 	
 	/**
-	 * Effectue l operation demandee a l utilsateur
+	 * Resous l equation demandee a l utilsateur
 	 * @param operande1 Premier element de l operation (nombre entier)
 	 * @param operande2 Second element de l operation (nombre entier)
 	 * @param operande3 Troiseme element de l operation (nombre entier)
@@ -84,8 +84,7 @@ public class Tp2 {
 	}
 	
 	/**
-	 * Effectue le calcul demande pour connaitre le resultat à la question
-	 * posee a l utilisateur (cas avec 1 operateur)
+	 * Resous l equation posee a l utilisateur (cas avec 1 operateur)
 	 * 
 	 * @param operande1 Premier element de l operation (nombre entier)
 	 * @param operande2 Second element de l operation (nombre entier)
@@ -115,8 +114,7 @@ public class Tp2 {
 	}
 	
 	/**
-	 * Effectue le calcul demande pour connaitre le resultat à la question
-	 * posee a l utilisateur (cas avec 2 operateurs)
+	 * Resous l equation posee a l utilisateur (cas avec 2 operateurs)
 	 * 
 	 * @param operande1 Premier element de l operation (nombre entier)
 	 * @param operande2 Second element de l operation (nombre entier)
