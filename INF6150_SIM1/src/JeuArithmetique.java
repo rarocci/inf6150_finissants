@@ -1,17 +1,19 @@
+
+
 import java.util.Random;
 
 /**
  * I N F 1 1 2 0 - TP2 hiver 2009
- * 
+ *
  * Classe fournie pour le Tp2
- * 
+ *
  * ==============================> Placez cette classe dans votre projet
- * 
+ *
  * @author Louise Laforest
  */
 
 public class JeuArithmetique {
-
+    
 	private static final int FACILE = 1;
 	private static final int MOYEN = 3;
 	private static final int DIFFICILE = 4;
@@ -19,7 +21,7 @@ public class JeuArithmetique {
 	private static int degreDifficulte = FACILE;
 	private static int germe = 25;
 	private static Random generateur = new Random(germe);
-
+    
 	private static final int OP_MIN_FACILE = 1;
 	private static final int OP_MAX_FACILE = 20;
 	private static final int OP_MIN_MOYEN = 1;
@@ -28,46 +30,39 @@ public class JeuArithmetique {
 	private static final int OP_MAX_DIFFICILE = 25;
 	private static final int OP_MIN_EXTREME = 2;
 	private static final int OP_MAX_EXTREME = 10;
-
+    
 	private static String operations = "+-*/%^";
-
-	private static char exposant;
-	private static int nombreExposant = 0;
+    
+	
+    
+    
 	private static final int caree = 2;
 	private static final int cube = 3;
-
+    
 	
 	public static int getFacile() {
 		return FACILE;
 	}
-
+    
 	public static int getMoyen() {
 		return MOYEN;
 	}
-
+    
 	public static int getDifficile() {
 		return DIFFICILE;
 	}
-
+    
 	public static int getExtreme() {
 		return EXTREME;
 	}
 	
-	public static int getNombreExposant() {
-		return nombreExposant;
-	}
-
-	public static void setNombreExposant(int nombreExposant) {
-		JeuArithmetique.nombreExposant = nombreExposant;
-	}
-	
-
+    
 	/**
 	 * Permet de definir le degre de difficulte. FACILE : operations + et -,
 	 * operandes entre 1 et 20 inclusivement MOYEN : operations +, -, *, et /,
 	 * operandes entre 1 et 50 inclusivement DIFFICILE : operations +, -, *, /
 	 * et %, operandes entre -25 et 25 inclusivement (sauf 0)
-	 * 
+	 *
 	 * @param degre
 	 *            degre de difficulte. Si autre que FACILE, MOYEN ou DIFFICILE,
 	 *            FACILE sera choisi.
@@ -80,47 +75,45 @@ public class JeuArithmetique {
 		} else {
 			degreDifficulte = EXTREME;
 		}
-	} // choisirDegreDifficulte
-
+	}
+    
 	
-
+    
 	/**
 	 * Retourne une operation choisie au hasard en fonction du degre de
 	 * difficulte choisi
-	 * 
+	 *
 	 * @return le caractere correspondant a l'operation
 	 */
 	public static char operationAuHasard() {
-		return operationAuHasardSelonLevel(0);	
-	} // operationAuHasard
+		return operationAuHasardSelonLevel(0);
+	}
 	
 	/**
 	 * Retourne une operation excluant "exposant" choisie au hasard en fonction du degre de
 	 * difficulte choisi
-	 * 
+	 *
 	 * @return le caractere correspondant a l'operation
 	 */
 	public static char operationAuHasardSansExposant() {
 		return operationAuHasardSelonLevel(-1);
 	}
-
+    
 	/**
 	 * Retourne une operation choisie au hasard en fonction du degre de
 	 * difficulte choisi
-	 * @param int indice, entier negatif ou 0. 
+	 * @param int indice, entier negatif ou 0.
 	 * @return le caractere correspondant a l'operation
 	 */
 	public static char operationAuHasardSelonLevel(int indice) {
-		exposant = operations.charAt(nombreAleatoire(0, degreDifficulte + indice));
-		if (exposant == '^')
-			nombreExposant++;
-		return exposant;
+		
+		return operations.charAt(nombreAleatoire(0, degreDifficulte + indice));
 	}
 	
 	/**
 	 * Retourne un nombre choisi au hasard en fonction du degre de difficulte
 	 * choisi
-	 * 
+	 *
 	 * @return le nombre choisi au hasard
 	 */
 	public static int operandeAuHasard() {
@@ -134,20 +127,20 @@ public class JeuArithmetique {
 				reponse = nombreAleatoire(OP_MIN_DIFFICILE, OP_MAX_DIFFICILE);
 			} while (reponse == 0);
 		}else {
-			 
-				do {
-					reponse = nombreAleatoire(OP_MIN_DIFFICILE, OP_MAX_DIFFICILE);
-				} while (reponse == 0);
-						
+            
+            do {
+                reponse = nombreAleatoire(OP_MIN_DIFFICILE, OP_MAX_DIFFICILE);
+            } while (reponse == 0);
+            
 		}
-			
+        
 		return reponse;
-	}// operandeAuHasard
+	}
 	
 	
 	/**
 	 * Retourne un nombre choisi au hasard entre 2 et 3
-	 * 
+	 *
 	 * @return le nombre choisi au hasard
 	 */
 	public static int operandeCareeCubeAuHasard() {
@@ -156,17 +149,17 @@ public class JeuArithmetique {
 	
 	/**
 	 * Retourne un nombre choisi au hasard entre 2 et 10
-	 * 
+	 *
 	 * @return le nombre choisi au hasard
 	 */
 	public static int operandeExposantAuHasard() {
 		return nombreAleatoire(OP_MIN_EXTREME, OP_MAX_EXTREME);
 	}
 	
-
+    
 	/**
 	 * Retourne un nombre choisi au hasard entre min et max
-	 * 
+	 *
 	 * @return le nombre choisi au hasard
 	 */
 	private static int nombreAleatoire(int min, int max) {
@@ -174,12 +167,12 @@ public class JeuArithmetique {
 		if (min > max) {
 			reponse = 0;
 		} else {
-
+            
 			reponse = (int) Math.floor((max - min + 1)
-					* generateur.nextDouble())
-					+ min;
+                                       * generateur.nextDouble())
+            + min;
 		}
 		return reponse;
-	} // nombreAleatoire
-
-} // JeuArithmetique
+	} 
+    
+} 
