@@ -1,36 +1,24 @@
 public class Tp2 {
 
-	public static String saisirDegreDifficulte() {
-		String level = "";// degre de difficulte
+	public static int saisirDegreDifficulte() {
+		int level = 0;
 		boolean acces = true;
 		do {
-			System.out
-					.print("Choisissez un degre de difficulte (facile, moyen ou difficile ou extreme) : ");// saisir
-																											// le
-																											// degre
-																											// de
-																											// difficulte
-			level = Clavier.lireString(); // valider le degre de difficulte
+			System.out.print("Choisissez un degre de difficulte" +
+					" (1-facile, 2-moyen, 3-difficile ou 4-extreme) : ");
+			level = Clavier.lireInt();
 
-			if (level.compareTo("facile") == 0 || level.compareTo("moyen") == 0
-					|| level.compareTo("difficile") == 0
-					|| level.compareTo("MOYEN") == 0
-					|| level.compareTo("FACILE") == 0
-					|| level.compareTo("DIFFICILE") == 0
-					|| level.compareTo("extreme") == 0) {// si l utilisateur
-															// veut effectuer
-															// une operation
+			if ((1 <= level) && (level <= 4)) {
 				acces = false;
 			} else {
-				System.out.println("*** choix invalide");// si le choix est
-															// invalide
+				System.out.println("*** choix invalide");
 			}
 		} while (acces);
 
 		return level;
 	}
 
-	public static String saisirReponseOuiNon() {
+	/*public static String saisirReponseOuiNon() {
 		String reponse = "";
 		boolean acces1 = true;
 		do {
@@ -53,37 +41,33 @@ public class Tp2 {
 		} while (acces1);
 
 		return reponse;
-	}
+	}*/
 
 	public static void main(String[] params) {
-		String nom = ""; // nom de l utilisateur
-		String difficulte = ""; // la difficulte de l opertaion
+		String nameUser = "";
+		int difficulte = 0;
 		String choix = "";
-		int operande1, operande2, correction = 0, resultat = 0;// les 2 nombres
-																// necessaire
-																// pour faire
-																// les calculs
-																// et le
-																// resultat
-																// obtenu et la
-																// correction si
-																// l utilisateur
-																// echoue apres
-																// 3 tentatives
+		int operande1, operande2, correction = 0, resultat = 0;
 		boolean acces2 = true;
 		boolean acces3 = true;
 		int i = 0;
-		int j = 0;// compteur
+		int compteur = 0;
 		float score = 0;
 		char operation = ' ';
 		String pourcentage = "";
-		System.out
-				.println("Ce programme demande a l utilisateur de saisir son nom, s il veut faire une operation, choisir le degre de difficulte,extreme et continue de proposer des operations arithmetiques tant que l utilisateur choisi oui,OUI,O ou o.et si l utilisateur choisi non il lui donne le resultat obtenu en fonction des operations faites et du nombre de tentatives faites avant de trouver le bon resultas(3 tentatives max)");
+		System.out.println("Ce programme demande a l utilisateur de saisir" +
+				" son nom, choisir le degre de difficulte et continuer " +
+				"de proposer des operations arithmetiques tant que " +
+				"l utilisateur n ecrit pas FIN a la suite d une reponse " +
+				"et si l utilisateur tape FIN, il lui donne le resultat" +
+				" obtenu en fonction des operations faites et du nombre" +
+				" de tentatives faites avant de trouver le bon " +
+				"resultas(3 tentatives max)");
 
 		System.out.print("Veuillez donner votre nom : ");
-		nom = Clavier.lireString();
+		nameUser = Clavier.lireString();
 
-		System.out.println("Bienvenue " + nom + " !");
+		System.out.println("Bienvenue " + nameUser + " !");
 		difficulte = saisirDegreDifficulte();
 
 		do {
