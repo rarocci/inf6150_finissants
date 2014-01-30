@@ -6,6 +6,11 @@ public class testNombreOperateur {
 	 */
 	public static void main (String[] params)
 	{
-		System.out.println(Tp2.nombreOperateur());
+		int i = 0;
+		do
+		{
+			++i;
+			System.out.print(Tp2.nombreOperateur() + " ");
+		} while (i != 10);
 	}
 }

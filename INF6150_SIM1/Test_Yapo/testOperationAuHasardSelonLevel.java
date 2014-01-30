@@ -9,8 +9,8 @@ public class testOperationAuHasardSelonLevel {
 			JeuArithmetique.choisirDegreDifficulte(
 					JeuArithmetique.getExtreme());
 			JeuArithmetique.operationAuHasard();
-			System.out.println(JeuArithmetique.getNombreExposant());
-		} while (i != 50);
+			System.out.print(JeuArithmetique.getNombreExposant() + " ");
+		} while (i != 25);
 		
 	}
 }
