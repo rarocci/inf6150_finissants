@@ -1,5 +1,20 @@
-public class Tp2 {
+import java.util.Random;
 
+public class Tp2 {
+	
+	final static int CHANCE_TOTAL = 3;
+	final static int LEVEL_MIN = 1;
+	final static int LEVEL_MAX = 4;
+	final static int NBRE_OPERATEUR_MIN = 1;
+	final static int NBRE_OPERATEUR_MAX = 2;
+	
+	
+	/**
+	 * saisirDegreDifficulte permet de saisir le niveau de difficulte
+	 * voulu. Elle s assure que la valeur entree est dans l'intervalle
+	 * specifie
+	 * @return Un Entier qui represente le niveau de difficulte
+	 */
 	public static int saisirDegreDifficulte() {
 		int level = 0;
 		boolean acces = true;
@@ -8,7 +23,7 @@ public class Tp2 {
 					" (1-facile, 2-moyen, 3-difficile ou 4-extreme) : ");
 			level = Clavier.lireInt();
 
-			if ((1 <= level) && (level <= 4)) {
+			if ((LEVEL_MIN <= level) && (level <= LEVEL_MAX)) {
 				acces = false;
 			} else {
 				System.out.println("*** choix invalide");
@@ -43,18 +58,56 @@ public class Tp2 {
 		return reponse;
 	}*/
 
+	/**
+	 * nombreOperateur determine combien d operateurs on aura pour
+	 * l operation en cours
+	 * @return Un entier dont la valeur est 1 ou 2
+	 */
+	public static int nombreOperateur()
+	{
+		Random rand = new Random();
+		return rand.nextInt(NBRE_OPERATEUR_MAX - NBRE_OPERATEUR_MIN + 1) +
+														NBRE_OPERATEUR_MIN;
+	}
+	
+	public static int determinerCorrection(int operande1, int opreande2,
+			int operande3, int nbreOperateur, char operation1, char operation2)
+	{
+		int resultat = 0;
+		
+		switch(nbreOperateur)
+		{
+		
+		}
+		return resultat;
+	}
+	
+	private static int determinerCorrectionUnOperateur(int operande1,
+			int operande2, char operation1)
+	{
+		int resultat = 0;
+		switch (operation1)
+		{
+			case '+': resultat = operande1 + operande2;
+					  break;
+			case '-': break;
+		}
+		return resultat;
+	}
+	
+	/**
+	 * fonction principale
+	 * @param params n est pas pris en compte
+	 */
 	public static void main(String[] params) {
-		String nameUser = "";
-		int difficulte = 0;
-		String choix = "";
-		int operande1, operande2, correction = 0, resultat = 0;
-		boolean acces2 = true;
-		boolean acces3 = true;
-		int i = 0;
-		int compteur = 0;
+		String nameUser = "", pourcentage = "";
+		int difficulte = 0, operande1 = 0, operande2 = 0, operande3 = 0;
+		int nbreOperateur = 0,  resultat = 0, correction = 0;
+		boolean nextChance = true, nextTurn = true;
+		int chance = 0, compteur = 0;
 		float score = 0;
-		char operation = ' ';
-		String pourcentage = "";
+		char operation1 = ' ', operation2 = ' ';
+		
 		System.out.println("Ce programme demande a l utilisateur de saisir" +
 				" son nom, choisir le degre de difficulte et continuer " +
 				"de proposer des operations arithmetiques tant que " +
@@ -69,107 +122,117 @@ public class Tp2 {
 
 		System.out.println("Bienvenue " + nameUser + " !");
 		difficulte = saisirDegreDifficulte();
-
+		
+		switch (difficulte)
+		{
+			case 1: JeuArithmetique.choisirDegreDifficulte(
+									JeuArithmetique.getFacile());
+					System.out.println("Niveau choisi: Facile.");
+					break;
+			case 2: JeuArithmetique.choisirDegreDifficulte(
+									JeuArithmetique.getMoyen());
+					System.out.println("Niveau choisi: Moyen.");
+					break;
+			case 3: JeuArithmetique.choisirDegreDifficulte(
+									JeuArithmetique.getDifficile());
+					System.out.println("Niveau choisi: Difficile.");
+					break;
+			case 4: JeuArithmetique.choisirDegreDifficulte(
+									JeuArithmetique.getExtreme());
+					System.out.println("Niveau choisi: Extreme.");
+					break;
+		}
+			
 		do {
-			i = 0;
-			acces2 = true;
-			choix = saisirReponseOuiNon();
-
-			if (choix.compareTo("OUI") == 0 || choix.compareTo("O") == 0
-					|| choix.compareTo("o") == 0 || choix.compareTo("oui") == 0) {
-				j++;
-				if (difficulte.compareTo("moyen") == 0
-						|| difficulte.compareTo("MOYEN") == 0) {
-					JeuArithmetique.choisirDegreDifficulte(JeuArithmetique
-							.getMoyen());
+				chance = 0;
+				nextChance = true;
+				++compteur;
+				
+				nbreOperateur = nombreOperateur();
+				switch (nbreOperateur)
+				{
+					case 1: operation1 = JeuArithmetique.operationAuHasard();
+							if (operation1 == '^')
+							{
+								operande1 = JeuArithmetique.
+											operandeExposantAuHasard();
+								operande2 = JeuArithmetique.
+											operandeCareeCubeAuHasard();
+							} else
+							{
+								operande1 = JeuArithmetique.operandeAuHasard();
+								operande2 = JeuArithmetique.operandeAuHasard();
+							}
+							System.out.println(operande1 + " " + operation1 + 
+									" " + operande2 + " = ?");
+							break;
+					case 2:	do
+							{
+								operation1 = JeuArithmetique.
+													operationAuHasard();
+								operation2 = JeuArithmetique.
+													operationAuHasard();
+							} while (operation1 == '^' || operation2 == '^');
+							operande1 = JeuArithmetique.operandeAuHasard();
+							operande2 = JeuArithmetique.operandeAuHasard();
+							operande3 = JeuArithmetique.operandeAuHasard();
+							System.out.println(operande1 + " " + operation1 + 
+									" " + operande2 + " " + operation2 +
+									" " + operande3 + " = ?");
+							break;
 				}
-				if (difficulte.compareTo("facile") == 0
-						|| difficulte.compareTo("FACILE") == 0) {
-					JeuArithmetique.choisirDegreDifficulte(JeuArithmetique
-							.getFacile());
-				}
-				if (difficulte.compareTo("difficile") == 0
-						|| difficulte.compareTo("DIFFICILE") == 0) {
-					JeuArithmetique.choisirDegreDifficulte(JeuArithmetique
-							.getDifficile());
-				}
-				if (difficulte.compareTo("extreme") == 0
-						|| difficulte.compareTo("EXTREME") == 0) {
-					JeuArithmetique.choisirDegreDifficulte(JeuArithmetique
-							.getExtreme());
-				}
-
-				operation = JeuArithmetique.operationAuHasard();
-				System.out.println("nombre expo "+JeuArithmetique.getNombreExposant());
-				if (JeuArithmetique.getNombreExposant() == 1) {
-					operande1 = JeuArithmetique.operandeExposantAuHasard();
-					operande2 = JeuArithmetique.operandeCareeCubeAuHasard();
-					JeuArithmetique.setNombreExposant(0);
-				} else {
-					operande1 = JeuArithmetique.operandeAuHasard();
-					operande2 = JeuArithmetique.operandeAuHasard();
-				}
-
-				System.out.println(operande1 + " " + operation + " "
-						+ operande2 + " = ?");
-
+				
 				System.out.println("");
 				do {
-					i++;
+					++chance;
 					System.out.print("Entrez votre reponse : ");
 					resultat = Clavier.lireInt();
-					if (operation == '+')
+					if (operation1 == '+')
 						correction = operande1 + operande2;
-					if (operation == '*')
+					if (operation1 == '*')
 						correction = operande1 * operande2;
-					if (operation == '-')
+					if (operation1 == '-')
 						correction = operande1 - operande2;
-					if (operation == '/')
+					if (operation1 == '/')
 						correction = operande1 / operande2;
-					if (operation == '%')
+					if (operation1 == '%')
 						correction = operande1 % operande2;
-					if (operation == '^')
+					if (operation1 == '^')
 						correction = (int) Math.pow(operande1, operande2);
 
 					if (resultat == correction) {
-						System.out.println("Bravo " + nom
+						System.out.println("Bravo " + nameUser
 								+ " ! Bonne reponse !");
-						acces2 = false;
+						nextChance = false;
 					} else {
-						System.out.println("Desole " + nom
+						System.out.println("Desole " + nameUser
 								+ ", ce n'est pas la bonne reponse.");
 					}
-					if (i == 3) {
-						System.out.println(nom + ", la reponse est : "
+					if (chance == 3) {
+						System.out.println(nameUser + ", la reponse est : "
 								+ correction);
-						acces2 = false;
+						nextChance = false;
 					}
 
-				} while (acces2);// ajouter la condition de s il trouve la
-									// reponse juste avant trois tentative.
-			} else {
-
-				score = (score / 3) / j;
-				if (score < 0.45) {
-					pourcentage = "mediocre"; // le programme donnera la mention
-												// appropriee en fonction du
-												// score obtenu
-				} else if ((score >= 0.45) && (score < 0.60)) {
-					pourcentage = "passable";
-				} else if ((score >= 0.60) && (score < 0.75)) {
-					pourcentage = "bien";
-				} else if ((score >= 0.75) && (score < 0.90)) {
-					pourcentage = "tres bien";
-				} else if (score >= 0.90) {
-					pourcentage = "excellent";
-				}
-				System.out.println("score = " + ((int) Math.ceil(score * 100))
-						+ " avec la mention: " + pourcentage);
-				acces3 = false;
-			}
-
-			score = score + 4 - i;
-		} while (acces3);
-
+				} while (nextChance);
+			score = score + 4 - chance;
+		} while (nextTurn);
+		
+		score = (score / 3) / compteur;
+		if (score < 0.45) {
+			pourcentage = "mediocre"; // le programme donnera la mention
+										// appropriee en fonction du
+										// score obtenu
+		} else if ((score >= 0.45) && (score < 0.60)) {
+			pourcentage = "passable";
+		} else if ((score >= 0.60) && (score < 0.75)) {
+			pourcentage = "bien";
+		} else if ((score >= 0.75) && (score < 0.90)) {
+			pourcentage = "tres bien";
+		} else if (score >= 0.90) {
+			pourcentage = "excellent";
+		}
+		System.out.println("score = " + ((int) Math.ceil(score * 100))
+				+ " avec la mention: " + pourcentage);
 	} // main
 } // Tp2
