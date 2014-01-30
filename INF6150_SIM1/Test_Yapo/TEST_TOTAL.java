@@ -11,5 +11,8 @@ public class TEST_TOTAL {
 		System.out.println("Test Niveau de Difficulte:");
 		testSaisirDegreDifficulte.main(params);
 		System.out.println("************************");
+                System.out.println("testJeuArithmetique.java:");
+                testJeuArithmetique.main(params);
+                System.out.println("************************");
 	}
 }
