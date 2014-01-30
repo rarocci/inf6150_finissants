@@ -32,10 +32,7 @@ public class JeuArithmetique {
 	private static final int OP_MAX_EXTREME = 10;
     
 	private static String operations = "+-*/%^";
-    
-	
-    
-    
+   
 	private static final int caree = 2;
 	private static final int cube = 3;
     
