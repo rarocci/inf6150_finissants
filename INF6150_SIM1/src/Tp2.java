@@ -49,7 +49,7 @@ public class Tp2 {
 	}
 	
 	/**
-	 * Resous l equation demandee a l utilsateur
+	 * Resous l equation demandee a l utilisateur
 	 * @param operande1 Premier element de l operation (nombre entier)
 	 * @param operande2 Second element de l operation (nombre entier)
 	 * @param operande3 Troiseme element de l operation (nombre entier)
