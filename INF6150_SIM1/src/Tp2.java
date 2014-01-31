@@ -8,7 +8,8 @@ public class Tp2 {
 	final static int LEVEL_MAX = 4;
 	final static int NBRE_OPERATEUR_MIN = 1;
 	final static int NBRE_OPERATEUR_MAX = 2;
-	
+	final static String OPERATION_DE_POIDS_FORT = "*/%";
+	final static String MESSAGE_D_ARRET = "FIN";
 	
 	/**
 	 * Permet de saisir le niveau de difficulte
@@ -20,8 +21,9 @@ public class Tp2 {
 		int level = 0;
 		boolean acces = true;
 		do {
-			System.out.print("Choisissez un degre de difficulte" +
-					" (1-facile, 2-moyen, 3-difficile ou 4-extreme) : ");
+			System.out.print("Choisissez un degre de difficulte en tapant" +
+					" le chiffre correspondant (1-facile, 2-moyen, " +
+					"3-difficile ou 4-extreme) : ");
 			level = Clavier.lireInt();
 
 			if ((LEVEL_MIN <= level) && (level <= LEVEL_MAX)) {
@@ -66,11 +68,11 @@ public class Tp2 {
 			case 1: resultat = determinerCorrectionUnOperateur(
 											operande1, operande2, operation1);
 					break;
-			case 2: if ("*/%".contains("" + operation1))
+			case 2: if (OPERATION_DE_POIDS_FORT.contains("" + operation1))
 					{
 						resultat = determinerCorrectionDeuxOperateurs(
 					  operande1, operande2, operande3, operation1, operation2);
-					} else if ("*/%".contains("" + operation2))
+					} else if (OPERATION_DE_POIDS_FORT.contains(""+operation2))
 					{
 						resultat = determinerCorrectionDeuxOperateurs(
 					  operande2, operande3, operande1, operation2, operation1);
@@ -144,8 +146,8 @@ public class Tp2 {
 		String resultat = Clavier.lireString();
 		resultat = resultat.toUpperCase();
 		
-		if (resultat.endsWith("FIN"))
-			resultat = "FIN";
+		if (resultat.endsWith(MESSAGE_D_ARRET))
+			resultat = MESSAGE_D_ARRET;
 		return resultat;
 	}
 	
@@ -168,12 +170,12 @@ public class Tp2 {
 		
 		System.out.println("Ce programme demande a l utilisateur de saisir" +
 				" son nom, choisir le degre de difficulte et continuer " +
-				"de proposer des operations arithmetiques tant que " +
+				"de proposer des \noperations arithmetiques tant que " +
 				"l utilisateur n ecrit pas FIN a la suite d une reponse " +
-				"et si l utilisateur tape FIN, il lui donne le resultat" +
+				"et si l utilisateur tape FIN,\n il lui donne le resultat" +
 				" obtenu en fonction des operations faites et du nombre" +
 				" de tentatives faites avant de trouver le bon " +
-				"resultas(3 tentatives max)");
+				"resultas\n(3 tentatives max)");
 
 		System.out.print("Veuillez donner votre nom : ");
 		nameUser = Clavier.lireString();
